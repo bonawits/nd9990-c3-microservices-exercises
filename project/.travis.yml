@@ -1,9 +1,6 @@
 language: node_js
 node_js: 12
 services: docker
-branches:
-  only:
-    - master
 env:
   - DOCKER_COMPOSE_VERSION=1.25.4
 
@@ -16,8 +13,9 @@ before_install:
   - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
   - chmod +x ./kubectl
   - sudo mv ./kubectl /usr/local/bin/kubectl
-  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
 install:
   - docker-compose -f udagram-deployment/docker/docker-compose-build.yml build --parallel
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker-compose -f docker-compose-build.yaml push
 script: echo "done"
