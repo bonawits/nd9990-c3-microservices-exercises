@@ -6,13 +6,13 @@ services:
     image: bonawits/udagram-deployment
   backend_user:
     build:
-      context: ../udagram-api-user
+      context: ../../udagram-api-user
     image: bonawits/udagram-user
   backend_feed:
     build:
-      context: ../udagram-api-feed
+      context: ../../udagram-api-feed
     image: bonawits/udagram-feed
   frontend:
     build:
-      context: ../udagram-frontend
+      context: ../../udagram-frontend
     image: bonawits/udagram-frontend
