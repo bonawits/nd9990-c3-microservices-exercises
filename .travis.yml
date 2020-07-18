@@ -1,6 +1,9 @@
 language: node_js
 node_js: 12
 services: docker
+branches:
+  only:
+    - master
 env:
   - DOCKER_COMPOSE_VERSION=1.25.4
 
