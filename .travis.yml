@@ -8,14 +8,13 @@ env:
   - DOCKER_COMPOSE_VERSION=1.25.4
 
 before_install:
-  - cd project/udagram-deployment/docker
   - docker -v && docker-compose -v
   - sudo rm /usr/local/bin/docker-compose
   - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
 install:
-  - docker-compose -f udacity-c3-deployment/docker/docker-compose-build.yml build --parallel
+  - docker-compose -f project/udagram-deployment/docker-compose-build.yml build --parallel
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker-compose -f docker-compose-build.yaml push
 script: echo "done"
